@@ -1,0 +1,42 @@
+class MinStack {
+    private readonly stack: number[] = [];
+    private readonly minStack: number[] = [];
+    constructor() {}
+
+    /**
+     * @param {number} val
+     * @return {void}
+     */
+    push(val: number): void {
+        this.stack.push(val);
+        if (!this.minStack.length) {
+            this.minStack.push(val);
+            return;
+        }
+        const currentMin = Math.min(this.getMin(), val);
+        this.minStack.push(currentMin);
+
+    }
+
+    /**
+     * @return {void}
+     */
+    pop(): void {
+        this.stack.pop();
+        this.minStack.pop();
+    }
+
+    /**
+     * @return {number}
+     */
+    top(): number {
+        return this.stack[this.stack.length - 1];
+    }
+
+    /**
+     * @return {number}
+     */
+    getMin(): number {
+        return this.minStack[this.minStack.length - 1];
+    }
+}
